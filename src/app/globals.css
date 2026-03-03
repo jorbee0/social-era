@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --brand-dark: #0A2E6D;
+    --brand-primary: #1C4FD7;
+    --brand-accent: #2FA8E0;
+    --white: #FFFFFF;
+    --bg-subtle: #F8FAFC;
+    --text-dark: #0F172A;
+    --text-muted: #475569;
+}
+
+@layer base {
+    body {
+        @apply antialiased text-text-dark bg-white;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Outfit', sans-serif;
+        @apply tracking-tight font-semibold;
+    }
+}
+
+@layer components {
+    .section-spacing {
+        @apply py-24 md:py-32;
+    }
+
+    .container-custom {
+        @apply max-w-7xl mx-auto px-6 md:px-12 lg:px-16;
+    }
+}
