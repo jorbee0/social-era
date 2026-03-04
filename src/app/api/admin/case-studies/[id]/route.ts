@@ -6,13 +6,14 @@ import { verifyToken } from "@/lib/verifyToken";
 // Update case study
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     verifyToken(req);
     await connectDB();
     const body = await req.json();
-    const { id } = params;
+
+    const { id } = await params;
 
     const updated = await CaseStudy.findByIdAndUpdate(id, body, { new: true });
     if (!updated)
@@ -30,12 +31,13 @@ export async function PUT(
 // Delete case study
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     verifyToken(req);
     await connectDB();
-    const { id } = params;
+
+    const { id } = await params;
 
     const deleted = await CaseStudy.findByIdAndDelete(id);
     if (!deleted)
