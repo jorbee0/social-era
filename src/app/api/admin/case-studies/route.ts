@@ -5,26 +5,40 @@ import { verifyToken } from "@/lib/verifyToken";
 
 // Get all case studies (Admin)
 export async function GET(req: NextRequest) {
-    try {
-        verifyToken(req); // Ensure admin
-        await connectDB();
-        const caseStudies = await CaseStudy.find().sort({ createdAt: -1 });
-        return NextResponse.json({ success: true, data: caseStudies }, { status: 200 });
-    } catch (error: any) {
-        return NextResponse.json({ message: error.message || "Unauthorized" }, { status: 401 });
-    }
+  try {
+    verifyToken(req); // Ensure admin
+    await connectDB();
+    const caseStudies = await CaseStudy.find().sort({ createdAt: -1 });
+    return NextResponse.json(
+      { success: true, data: caseStudies },
+      { status: 200 },
+    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unauthorized";
+    return NextResponse.json(
+      { message },
+      { status: 401 },
+    );
+  }
 }
 
 // Create new case study
 export async function POST(req: NextRequest) {
-    try {
-        verifyToken(req); // Ensure admin
-        await connectDB();
-        const body = await req.json();
+  try {
+    verifyToken(req); // Ensure admin
+    await connectDB();
+    const body = await req.json();
 
-        const newCaseStudy = await CaseStudy.create(body);
-        return NextResponse.json({ success: true, data: newCaseStudy }, { status: 201 });
-    } catch (error: any) {
-        return NextResponse.json({ message: error.message || "Failed to create" }, { status: 400 });
-    }
+    const newCaseStudy = await CaseStudy.create(body);
+    return NextResponse.json(
+      { success: true, data: newCaseStudy },
+      { status: 201 },
+    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Failed to create";
+    return NextResponse.json(
+      { message },
+      { status: 400 },
+    );
+  }
 }

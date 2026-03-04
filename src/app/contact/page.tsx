@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 export default function Contact() {
   return (
@@ -6,7 +6,6 @@ export default function Contact() {
       <section className="section-spacing bg-white dark:bg-[#0A0D14]">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-
             {/* LEFT SIDE */}
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-brand-dark dark:text-white mb-8 font-outfit">
@@ -28,10 +27,10 @@ export default function Contact() {
               <form
                 className="space-y-6"
                 onSubmit={async (e) => {
-                  e.preventDefault()
+                  e.preventDefault();
 
-                  const form = e.currentTarget
-                  const formData = new FormData(form)
+                  const form = e.currentTarget;
+                  const formData = new FormData(form);
 
                   const data = {
                     firstName: formData.get("firstName"),
@@ -39,31 +38,30 @@ export default function Contact() {
                     email: formData.get("email"),
                     service: formData.get("service"),
                     message: formData.get("message"),
-                  }
+                  };
 
                   try {
                     const res = await fetch("/api/contact", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify(data),
-                    })
+                    });
 
-                    const result = await res.json()
+                    const result = await res.json();
 
                     if (result.success) {
-                      alert("Inquiry submitted successfully 🚀")
-                      form.reset()
+                      alert("Inquiry submitted successfully 🚀");
+                      form.reset();
                     } else {
-                      alert("Email failed ❌")
-                      console.log(result.error)
+                      alert("Email failed ❌");
+                      console.log(result.error);
                     }
                   } catch (error) {
-                    alert("Server error ❌")
-                    console.log(error)
+                    alert("Server error ❌");
+                    console.log(error);
                   }
                 }}
               >
-
                 {/* NAME ROW */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -114,6 +112,7 @@ export default function Contact() {
                   </label>
                   <select
                     name="service"
+                    title="Service of Interest"
                     required
                     className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-3 text-sm dark:text-white focus:border-brand-primary outline-none transition-colors appearance-none rounded-lg"
                   >
@@ -145,13 +144,11 @@ export default function Contact() {
                 >
                   Submit Inquiry
                 </button>
-
               </form>
             </div>
-
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

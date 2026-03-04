@@ -7,32 +7,32 @@ import { verifyToken } from "@/lib/verifyToken";
  * URL: /api/protected
  */
 export async function GET(req: NextRequest) {
-    try {
-        // 1. Authenticate user using the token from headers
-        const decoded = verifyToken(req);
+  try {
+    // 1. Authenticate user using the token from headers
+    const decoded = verifyToken(req);
 
-        // 2. Connect to Database (optional for this specific check, but good for boilerplate)
-        await connectDB();
+    // 2. Connect to Database (optional for this specific check, but good for boilerplate)
+    await connectDB();
 
-        // 3. Return success response with decoded token data
-        return NextResponse.json(
-            {
-                success: true,
-                message: "Protected route accessed successfully",
-                user: decoded,
-            },
-            { status: 200 }
-        );
-    } catch (error: any) {
-        console.error("Protected Route Error:", error.message);
+    // 3. Return success response with decoded token data
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Protected route accessed successfully",
+        user: decoded,
+      },
+      { status: 200 },
+    );
+  } catch (error: unknown) {
+    console.error("Protected Route Error:", error instanceof Error ? error.message : "Unknown error");
 
-        // 4. Handle unauthorized access (token missing, invalid, or expired)
-        return NextResponse.json(
-            {
-                success: false,
-                message: error.message || "Unauthorized access",
-            },
-            { status: 401 }
-        );
-    }
+    // 4. Handle unauthorized access (token missing, invalid, or expired)
+    return NextResponse.json(
+      {
+        success: false,
+        message: error instanceof Error ? error.message : "Unauthorized access",
+      },
+      { status: 401 },
+    );
+  }
 }

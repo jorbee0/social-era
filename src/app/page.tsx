@@ -10,7 +10,7 @@ const services = [
   "Google Business Optimization",
   "Website Development",
   "SEO Services",
-  "Political Digital Support"
+  "Political Digital Support",
 ];
 
 export default function Home() {
@@ -23,8 +23,9 @@ export default function Home() {
 
       {/* Sliding Services Marquee at Bottom */}
       <div className="bg-brand-primary py-8 overflow-hidden relative border-t border-white/10">
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
               @keyframes marqueeHome {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
@@ -32,7 +33,9 @@ export default function Home() {
               .animate-marquee-home {
                   animation: marqueeHome 40s linear infinite;
               }
-          `}} />
+          `,
+          }}
+        />
         <div className="flex whitespace-nowrap animate-marquee-home">
           {[...services, ...services].map((service, idx) => (
             <div key={idx} className="flex items-center mx-12">
