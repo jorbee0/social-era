@@ -1,21 +1,17 @@
 "use client";
-
+// this is done
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,55 +33,104 @@ const Navbar = () => {
           : "bg-white dark:bg-[#0A0D14] py-5"
       }`}
     >
-      <div className="container-custom flex items-center justify-between">
+      {" "}
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        ```
+        {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-brand-primary rounded-sm flex items-center justify-center">
+          <div className="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center">
             <span className="text-white font-bold text-xl">S</span>
           </div>
-          <span className="text-brand-dark dark:text-white font-bold text-xl tracking-tight font-outfit">
+          <span className="text-black dark:text-white font-bold text-xl tracking-tight">
             Social Era
           </span>
         </Link>
-
+        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-semibold text-text-muted dark:text-white/60 hover:text-brand-primary dark:hover:text-white transition-colors duration-200"
+              className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors"
             >
               {link.name}
             </Link>
           ))}
+
           <ThemeToggle />
+
           <Link
             href="/contact"
-            className="bg-brand-primary text-white px-7 py-3 rounded-md text-sm font-bold hover:bg-brand-dark transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
+            className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-bold hover:bg-blue-700 transition-all"
           >
             Book a Strategy Call
           </Link>
         </div>
-
+        {/* Mobile Buttons */}
         <div className="flex items-center space-x-4 lg:hidden">
           <ThemeToggle />
-          <button className="text-brand-dark dark:text-white" title="Toggle menu">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-black dark:text-white"
+          >
+            {menuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-[#0A0D14] shadow-lg flex flex-col items-center py-8 space-y-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-blue-600"
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold"
+          >
+            Book a Strategy Call
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
