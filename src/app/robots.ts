@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://social-era.vercel.app/sitemap.xml",
+    sitemap: "https://social-bup4.vercel.app/sitemap.xml",
   };
 }
