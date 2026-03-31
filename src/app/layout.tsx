@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import WhatsAppButton from "@/components/WhatsAppButton"; // ✅ ADD THIS
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,7 +20,6 @@ export const metadata: Metadata = {
   title: "Social Era | Premium Corporate Digital Growth Partner",
   description:
     "The Social Era Digital Pvt. Ltd. provides structured, process-driven digital growth strategies for modern corporations.",
-
   keywords: [
     "digital marketing",
     "seo services",
@@ -28,17 +28,13 @@ export const metadata: Metadata = {
     "corporate digital growth",
     "Social Era Digital"
   ],
-
   authors: [{ name: "Social Era Digital Pvt. Ltd." }],
-
   creator: "Social Era Digital",
   publisher: "Social Era Digital",
-
   robots: {
     index: true,
     follow: true,
   },
-
   openGraph: {
     title: "Social Era | Digital Growth Partner",
     description:
@@ -48,7 +44,6 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-
   icons: {
     icon: "/favicon.ico",
   },
@@ -59,9 +54,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -76,6 +71,10 @@ export default function RootLayout({
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
+
+          {/* ✅ WHATSAPP BUTTON (GLOBAL) */}
+          <WhatsAppButton />
+
         </ThemeProvider>
       </body>
     </html>
