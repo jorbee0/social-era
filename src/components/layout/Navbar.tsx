@@ -35,15 +35,14 @@ const Navbar = () => {
     >
       {" "}
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        ```
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center">
-            <span className="text-white font-bold text-xl">S</span>
-          </div>
-          <span className="text-black dark:text-white font-bold text-xl tracking-tight">
-            Social Era
-          </span>
+        <Link href="/" className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.png"
+            alt="The Social Era Digital Pvt. Ltd."
+            className="h-16 w-auto"
+          />
         </Link>
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8">

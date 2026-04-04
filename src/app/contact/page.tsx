@@ -35,6 +35,7 @@ export default function Contact() {
                   const data = {
                     firstName: formData.get("firstName"),
                     lastName: formData.get("lastName"),
+                    phone: formData.get("phone"),
                     email: formData.get("email"),
                     service: formData.get("service"),
                     message: formData.get("message"),
@@ -91,18 +92,35 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* EMAIL */}
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 dark:text-white/40">
-                    Corporate Email
-                  </label>
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-3 text-sm dark:text-white focus:border-brand-primary outline-none transition-colors rounded-lg"
-                    placeholder="j.wilson@corporation.com"
-                  />
+                {/* CONTACT INFO ROW */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* PHONE */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest mb-2 dark:text-white/40">
+                      Phone Number
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-3 text-sm dark:text-white focus:border-brand-primary outline-none transition-colors rounded-lg"
+                      placeholder="+1 (555) 000-0000"
+                    />
+                  </div>
+
+                  {/* EMAIL */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest mb-2 dark:text-white/40">
+                      Corporate Email
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-3 text-sm dark:text-white focus:border-brand-primary outline-none transition-colors rounded-lg"
+                      placeholder="j.wilson@corporation.com"
+                    />
+                  </div>
                 </div>
 
                 {/* SERVICE */}

@@ -42,8 +42,8 @@ const Hero = () => {
         .delay-300 {
           animation-delay: 0.3s;
         }
-        .demand-text {
-          -webkit-text-stroke: 1px currentColor;
+        .delay-300 {
+          animation-delay: 0.3s;
         }
       `}</style>
 
@@ -69,7 +69,7 @@ const Hero = () => {
             <br />
             That Markets{" "}
             <span
-              className="text-transparent border-b-4 border-brand-primary inline-flex text-slate-900 dark:text-white demand-text"
+              className="border-b-4 border-brand-primary inline-flex text-slate-900 dark:text-white"
             >
               Demand.
             </span>

@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import WhatsAppButton from "@/components/WhatsAppButton"; // ✅ ADD THIS
+import EnquiryPopup from "@/components/EnquiryPopup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,8 +73,9 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
 
-          {/* ✅ WHATSAPP BUTTON (GLOBAL) */}
+          {/* ✅ GLOBAL COMPONENTS */}
           <WhatsAppButton />
+          <EnquiryPopup />
 
         </ThemeProvider>
       </body>

@@ -81,7 +81,7 @@ const detailedServices = [
     outcome:
       "Mobilized voter bases, clear-cut messaging dominance, and the digital tools necessary to win on a grand scale.",
     image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2959210?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000",
     bg: "bg-white dark:bg-[#0A0D14]",
   },
 ];

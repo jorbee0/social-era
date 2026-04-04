@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Loader2 } from "lucide-react";
 
 interface CaseStudy {
@@ -97,13 +97,21 @@ const CaseStudyBlock = ({
           {/* Visual */}
           <div className="w-full lg:w-1/2 relative group">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl">
-              <Image
-                src={study.image}
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-                alt="Case Study Visual"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {(study.image?.startsWith("http") || study.image?.startsWith("/")) ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={study.image}
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  alt="Case Study Visual"
+                  onError={(e) => {
+                    e.currentTarget.style.opacity = '0';
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                  <span className="text-slate-400 font-medium">Image format invalid</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-dark/20 to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-brand-accent text-brand-dark font-bold px-6 py-3 rounded-md shadow-lg transform group-hover:-translate-y-2 transition-transform">
@@ -124,12 +132,16 @@ const CaseStudiesPage = () => {
     const fetchStudies = async () => {
       try {
         const res = await fetch("/api/case-studies", { cache: "no-store" });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`Status ${res.status}: ${text}`);
+        }
         const data = await res.json();
         if (data.success) {
           setCaseStudies(data.data);
         }
       } catch (error) {
-        console.error("Fetch failed", error);
+        console.error("Fetch failed:", error);
       } finally {
         setLoading(false);
       }

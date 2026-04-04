@@ -6,30 +6,28 @@ const Footer = () => {
     <footer className="bg-brand-dark text-white py-12 border-t border-white/5">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-center md:text-left">
-          
+
           {/* Brand & Contact */}
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className="flex items-center justify-center md:justify-start space-x-2"
+              className="flex items-center justify-center md:justify-start"
             >
-              <div className="w-8 h-8 bg-brand-primary rounded-sm flex items-center justify-center">
-                <span className="text-white font-bold text-xl uppercase">
-                  S
-                </span>
-              </div>
-              <span className="text-white font-bold text-xl tracking-tight font-outfit uppercase">
-                Social Era
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/logo.png"
+                alt="The Social Era Digital Pvt. Ltd."
+                className="h-20 w-auto bg-white rounded-xl p-2"
+              />
             </Link>
 
             <div className="space-y-1">
               <p className="text-blue-100/60 text-sm font-inter">
                 <a
-                  href="tel:9555675223"
+                  href="tel: 7905261190"
                   className="hover:text-brand-primary transition-colors hover:underline"
                 >
-                  9598980683
+                  7905261190
                 </a>
               </p>
               <p className="text-blue-100/60 text-sm font-inter lowercase">

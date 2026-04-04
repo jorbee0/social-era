@@ -16,7 +16,7 @@ const flagshipServices = [
     name: "Enterprise Web Systems",
     desc: "High-performance corporate portals engineered for unprecedented speed, security, and conversion metrics. We build infrastructure that scales with your ambition, prioritizing UX and technical SEO.",
     stats: ["Infinite Scale", "Cloud Native", "Certified Build"],
-    price: "$8,500",
+
     image:
       "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=1000",
     bgColor: "bg-slate-900 dark:bg-slate-950",
@@ -72,15 +72,14 @@ const StackedServices = () => {
                   <div className="flex items-end justify-between">
                     <div>
                       <span className="text-white/40 text-xs font-bold uppercase tracking-[0.3em] block mb-1">
-                        Starting from
+                        {/* Starting from */}
                       </span>
                       <span className="text-3xl font-black">
-                        Price{" "}
+
                         <span className="text-brand-accent">
                           {service.price}
                         </span>{" "}
                         <span className="text-xs text-white/20 line-through tracking-normal">
-                          $10,000
                         </span>
                       </span>
                     </div>

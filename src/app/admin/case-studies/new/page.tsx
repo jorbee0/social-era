@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 import {
   Save,
   ArrowLeft,
@@ -361,15 +361,21 @@ export default function CaseStudyForm() {
           </section>
 
           {formData.image && (
-            <div className="rounded-3xl overflow-hidden aspect-[4/3] border border-slate-200 shadow-sm group relative">
-              <Image
+            <div className="rounded-3xl overflow-hidden aspect-[4/3] border border-slate-200 shadow-sm group relative bg-slate-50">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={formData.image}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-opacity duration-300"
                 alt="Preview"
-                fill
+                onError={(e) => {
+                  e.currentTarget.style.opacity = '0';
+                }}
+                onLoad={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                }}
               />
               <div className="absolute inset-0 bg-brand-dark/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-white text-[10px] font-black uppercase tracking-[0.2em]">
+                <span className="text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 text-center">
                   Live Preview
                 </span>
               </div>
